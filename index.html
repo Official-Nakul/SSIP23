@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino_Controlled</title>
+    <style>
+        .btnTrigg {
+            height: 25em;
+            width: 25em;
+            background-color: red;
+        }
+
+        .btn {
+            margin-top: 1.5em;
+            height: 2.5em;
+            width: 10em;
+        }
+
+        .Container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Container">
+        <div class="btnTrigg"></div>
+        <button class="btn">Click Here</button>
+    </div>
+</body>
+<script>
+    const box = document.querySelector(".btnTrigg");
+    const btn = document.querySelector(".btn");
+
+    btn.addEventListener("mousedown", e =>
+    {
+        box.style.backgroundColor = "Green"
+    });
+    btn.addEventListener("mouseup", () =>
+    {
+        isButtonPressed = false;
+        box.style.backgroundColor = "red";
+    });
+
+    // Json file handler 
+
+    const url = 'https://dummyjson.com/products'
+
+    async function fetchDetail()
+    {
+        try {
+            const responseData = await fetch(url);
+            const data = await responseData.json();
+            console.log(data);
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+
+    }
+
+    fetchDetail();
+</script>
+
+</html>
