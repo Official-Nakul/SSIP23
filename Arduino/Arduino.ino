@@ -4,7 +4,7 @@
 // #include <WebServer.h>
 
 
-// #include <UnoWiFiDevEd.h>
+// #include <UnoWiFiDevEd.h>v
 
 #include <ArduinoJson.h>
 #include <ArduinoJson.hpp>
@@ -17,16 +17,15 @@ int greenPin = 12;
 int btnPin = 8;
 int btnState = 0;
 
-const char* ssid = "Your_SSID"; // Your Wi-Fi network name
-const char* password = "Your_Password"; // Your Wi-Fi network password
+// const char* ssid = "Nakul_5G";       // Your Wi-Fi network name
+// const char* password = "Nakul@250";  // Your Wi-Fi network password
 
 
-// HTTPClient http;
+// HttpClient http;
 
 /* ------------------------josn generator------------ */
 
-void JsonGen()
-{
+void JsonGen() {
   StaticJsonDocument<200> jsonReport;
   JsonArray array = jsonReport.to<JsonArray>();
 
@@ -43,9 +42,9 @@ void JsonGen()
   obj3["Value"] = 30;
 
   String jsonStr;
-  serializeJson(jsonReport,jsonStr);
+  serializeJson(jsonReport, jsonStr);
 
-  Serial.println(jsonStr); 
+  Serial.println(jsonStr);
 }
 
 /* ---------------Light function-------------------- */
@@ -57,36 +56,38 @@ void redLightOn() {
 void greenLightOn() {
   digitalWrite(redPin, LOW);
   digitalWrite(greenPin, LOW);
+  Serial.println("True");
 }
 
 /* -------------- Setup ------------------- */
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(9600);
   pinMode(btnPin, INPUT);
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
 
-  // http.begin("google.com");
-  // int responseCode = http.POST;
+  //http.begin("192.168.29.5");
+  //int responseCode = http.POST;
   // WiFi.begin(ssid, password);
 
   // while (WiFi.status() != WL_CONNECTED) {
   //   delay(1000);
   //   Serial.println("Connecting to WiFi...");
-  // }
+  //   }
 
-  // Serial.println("Connected to WiFi");
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:`
-  btnState = digitalRead(btnPin);
-
-  if (btnState == HIGH) {
-    greenLightOn();
-  } else {
-    redLightOn();
+  //   Serial.println("Connected to WiFi");
   }
-}
+
+  void loop() {
+    // put your main code here, to run repeatedly:`
+    btnState = digitalRead(btnPin);
+    JsonGen();
+    delay(5000);
+    if (btnState == HIGH) {
+      greenLightOn();
+    } else {
+      redLightOn();
+    }
+  }
