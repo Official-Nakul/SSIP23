@@ -49,21 +49,31 @@
 
     // Json file handler 
 
-    const url = 'https://dummyjson.com/products'
+    const url = 'https://esp32-gas-detector-b245c-default-rtdb.asia-southeast1.firebasedatabase.app/resp'
+    const apiKEY = "AIzaSyC9iBakZssP8HMA8hlWAm64ou6rDZpvmcE";
 
-    async function fetchDetail()
-    {
-        try {
-            const responseData = await fetch(url);
-            const data = await responseData.json();
-            console.log(data);
-        }
-        catch (error) {
-            console.log(error);
-        }
-
-
+    async function fetchDetail() {
+    try {
+        const responseData = await fetch(url + `?api_key=${apiKEY}`, { mode: 'no-cors' });
+        // You won't be able to access the response data due to 'no-cors' mode
+        console.log('Request sent successfully');
+    } catch (error) {
+        console.log(error);
     }
+}
+    // async function fetchDetail()
+    // {
+    //     try {
+    //         const responseData = await fetch(url+ `${apiKEY}`);
+    //         const data = await responseData.json();
+    //         console.log(data);
+    //     }
+    //     catch (error) {
+    //         console.log(error);
+    //     }
+
+
+    // }
 
     fetchDetail();
 </script>

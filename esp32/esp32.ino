@@ -2,6 +2,7 @@
 #include <ArduinoJson.h>
 #include <ArduinoJson.hpp>
 #include<HTTPClient.h>
+#include<Firebase_ESP_Client.h>
 
 int btnPin = 27;
 int btnState=0;
@@ -57,6 +58,6 @@ void loop() {
     GenerateJson("False");
     //Serial.println("False");
   }
-  delay(2000);
+  delay(20);
 
 }
